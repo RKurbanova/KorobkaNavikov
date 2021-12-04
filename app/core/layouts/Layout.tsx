@@ -1,5 +1,7 @@
 import { Head, BlitzLayout } from "blitz"
 
+import styles from "./styles.module.scss"
+
 const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
   return (
     <>
@@ -8,7 +10,9 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={styles.header}>header</div>
       {children}
+      <div className={styles.header}>footer</div>
     </>
   )
 }

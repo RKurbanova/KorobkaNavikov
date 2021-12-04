@@ -26,10 +26,11 @@
   "dependencies": {
     "@prisma/client": "3.x",
     "blitz": "0.43.0",
-    "react-dom": "18.0.0-alpha-5ca4b0433-20211020",
+    "formik": "2.2.9",
     "react": "18.0.0-alpha-5ca4b0433-20211020",
-    "zod": "3.x",
-    "formik": "2.2.9"
+    "react-dom": "18.0.0-alpha-5ca4b0433-20211020",
+    "sass": "1.44.0",
+    "zod": "3.x"
   },
   "devDependencies": {
     "@types/preview-email": "2.0.1",
@@ -37,8 +38,8 @@
     "eslint": "7.32.0",
     "husky": "7.0.4",
     "lint-staged": "11.3.0-beta.2",
-    "prettier-plugin-prisma": "3.6.0",
     "prettier": "2.5.0",
+    "prettier-plugin-prisma": "3.6.0",
     "pretty-quick": "3.1.2",
     "preview-email": "3.0.5",
     "prisma": "3.x",
