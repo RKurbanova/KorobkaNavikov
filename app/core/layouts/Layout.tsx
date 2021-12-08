@@ -16,17 +16,19 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
         />
       </Head>
       <div className={styles.wrapper}>
-        <div className={styles.header}>
-          КоробкаНавыков
-          <div className={styles.header__links}>
-            <a href="#" className={styles.header__link}>
-              Моё обучение
-            </a>
-            <a href="#" className={styles.header__link}>
-              Преподование
-            </a>
+        <header className={styles.header}>
+          <div className={styles.header__nav}>
+            <div className={styles.header__titleConteiner}>КоробкаНавыков</div>
+            <div className={styles.header__links}>
+              <a href="#" className={styles.header__link}>
+                Моё обучение
+              </a>
+              <a href="#" className={styles.header__link}>
+                Преподование
+              </a>
+            </div>
           </div>
-        </div>
+        </header>
         {children}
         <div className={styles.footer}>footer</div>
       </div>

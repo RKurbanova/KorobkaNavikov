@@ -5,13 +5,27 @@
 }
 
 .header {
-  padding: 4px 23px;
+  margin: 0 auto;
+  padding: 4px 30px;
   width: 100%;
+  box-sizing: border-box;
   height: 42px;
   background-color: #27273e;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-shadow: 0px 1px 5px rgb(0 0 0 / 31%);
+
+  &__nav {
+    width: 1300px;
+    max-width: 1470px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__titleConteiner {
+    margin-left: 20px;
+  }
 
   &__links {
     margin-left: 20px;
