@@ -1,5 +1,15 @@
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+
+const ITEMS_PER_PAGE = 10
+
 export function UserInfo() {
-  return <div>User info</div>
+  const user = useCurrentUser()
+  console.log(user)
+  return (
+    <div>
+      {user?.name}
+    </div>
+  )
 }
 
 export default UserInfo

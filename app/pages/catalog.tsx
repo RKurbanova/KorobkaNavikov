@@ -2,9 +2,11 @@ import { Head, BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import SearchBar from "app/catalog/components/SearchBar/SearchBar"
 import CourceList from "app/catalog/components/CourceList/CourceList"
-import React, { Suspense } from "react"
+import React, { Suspense, useState } from "react"
 
 const CatalogsPage: BlitzPage = () => {
+  const [searchQuery, setSearchQuery] = useState("")
+
   return (
     <>
       <Head>
@@ -12,11 +14,8 @@ const CatalogsPage: BlitzPage = () => {
       </Head>
 
       <Suspense fallback="Loading...">
-        <div className="container">
-          Temp catalog
-          <SearchBar />
-          <CourceList />
-        </div>
+        <SearchBar onSearch={setSearchQuery} />
+        <CourceList searchQuery={searchQuery} />
       </Suspense>
     </>
   )
