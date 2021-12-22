@@ -22,6 +22,10 @@ const CatalogsPage: BlitzPage = () => {
 }
 
 CatalogsPage.authenticate = true
-CatalogsPage.getLayout = (page) => <Layout>{page}</Layout>
+CatalogsPage.getLayout = (page) => (
+  <Suspense fallback="Loading...">
+    <Layout>{page}</Layout>
+  </Suspense>
+)
 
 export default CatalogsPage

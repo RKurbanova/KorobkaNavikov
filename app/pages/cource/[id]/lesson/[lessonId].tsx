@@ -1,22 +1,22 @@
 import Layout from "app/core/layouts/Layout"
-import UserInfo from "app/profile/components/UserInfo/UserInfo"
-import React, { Suspense } from "react"
+import Lesson from "app/cource/components/lesson/Lesson"
+import { Suspense } from "react"
 
-export function Profile() {
+export function LessonPage() {
   return (
     <Suspense fallback="Loading...">
       <div>
-        <UserInfo />
+        <Lesson />
       </div>
     </Suspense>
   )
 }
 
-Profile.authenticate = true
-Profile.getLayout = (page) => (
+LessonPage.authenticate = true
+LessonPage.getLayout = (page) => (
   <Suspense fallback="Loading...">
     <Layout title="Title">{page}</Layout>
   </Suspense>
 )
 
-export default Profile
+export default LessonPage

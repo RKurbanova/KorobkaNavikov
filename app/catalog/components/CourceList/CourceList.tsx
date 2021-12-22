@@ -2,6 +2,7 @@ import getCatalog from "app/catalog/queries/getCatalog"
 import { usePaginatedQuery } from "blitz"
 import { useCallback, useState } from "react"
 import styles from "./styles.module.scss"
+import Link from "next/link"
 
 const ITEMS_PER_PAGE = 9
 
@@ -37,42 +38,46 @@ export function CourceList({ searchQuery }) {
             {name}
             <div className={styles.courseCard__photo}></div>
             <div className={styles.courseCard__about}></div>
-            <div className={styles.courseCard__button}>Начать</div>
+            <Link href={`/cource/${id}`}>
+              <a className={styles.courseCard__button}>О курсе</a>
+            </Link>
           </div>
         ))}
       </div>
-      <div className={styles.paginator}>
-        <div className={styles.paginator__wrapper}>
-          <div>
-            <span onClick={setPreviousPage} className={styles.paginator__button}>
-              Назад
-            </span>
-          </div>
-          <div className={styles.paginator__pages}>
-            {Array(maxPage + 1)
-              .fill(1)
-              .map((_, index) => {
-                return (
-                  <span
-                    onClick={() => setPage(index)}
-                    key={index}
-                    className={
-                      styles.paginator__num +
-                      (index == page ? ` ${styles.paginator__num_active}` : "")
-                    }
-                  >
-                    {index + 1}
-                  </span>
-                )
-              })}
-          </div>
-          <div>
-            <span onClick={nextNextPage} className={styles.paginator__button}>
-              Вперед
-            </span>
+      {maxPage > 0 ? (
+        <div className={styles.paginator}>
+          <div className={styles.paginator__wrapper}>
+            <div>
+              <span onClick={setPreviousPage} className={styles.paginator__button}>
+                Назад
+              </span>
+            </div>
+            <div className={styles.paginator__pages}>
+              {Array(maxPage + 1)
+                .fill(1)
+                .map((_, index) => {
+                  return (
+                    <span
+                      onClick={() => setPage(index)}
+                      key={index}
+                      className={
+                        styles.paginator__num +
+                        (index == page ? ` ${styles.paginator__num_active}` : "")
+                      }
+                    >
+                      {index + 1}
+                    </span>
+                  )
+                })}
+            </div>
+            <div>
+              <span onClick={nextNextPage} className={styles.paginator__button}>
+                Вперед
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   )
 }

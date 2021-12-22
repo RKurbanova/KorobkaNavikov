@@ -7,13 +7,11 @@ export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElem
   /** Field label. */
   label: string
   /** Field type. Doesn't include radio buttons and checkboxes */
-  type?: "text" | "password" | "email" | "number"
-  isArea?: boolean
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
-export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ name, label, outerProps, isArea, ...props }, ref) => {
+export const Checkbox = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
+  ({ name, label, outerProps, ...props }, ref) => {
     const [input] = useField(name)
     const { isSubmitting } = useFormikContext()
 
@@ -21,12 +19,9 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
       <div {...outerProps}>
         <label>
           {label}
-          {isArea ? (
-            //@ts-ignore}
-            <textarea {...input} disabled={isSubmitting} {...props} ref={ref} />
-          ) : (
-            <input {...input} disabled={isSubmitting} {...props} ref={ref} />
-          )}
+          <br />
+          {input.value ? "yes" : "no"}
+          <input {...input} disabled={isSubmitting} {...props} type="checkbox" ref={ref} />
         </label>
 
         <ErrorMessage name={name}>
@@ -58,4 +53,4 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
   }
 )
 
-export default LabeledTextField
+export default Checkbox

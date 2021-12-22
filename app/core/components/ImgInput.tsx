@@ -6,27 +6,29 @@ export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElem
   name: string
   /** Field label. */
   label: string
-  /** Field type. Doesn't include radio buttons and checkboxes */
-  type?: "text" | "password" | "email" | "number"
-  isArea?: boolean
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
-export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ name, label, outerProps, isArea, ...props }, ref) => {
-    const [input] = useField(name)
+export const ImgField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
+  ({ name, label, outerProps, ...props }, ref) => {
+    const [, , { setValue }] = useField(name)
     const { isSubmitting } = useFormikContext()
 
     return (
       <div {...outerProps}>
         <label>
           {label}
-          {isArea ? (
-            //@ts-ignore}
-            <textarea {...input} disabled={isSubmitting} {...props} ref={ref} />
-          ) : (
-            <input {...input} disabled={isSubmitting} {...props} ref={ref} />
-          )}
+          <input
+            width="48"
+            height="48"
+            type="file"
+            disabled={isSubmitting}
+            {...props}
+            ref={ref}
+            onChange={(event) => {
+              setValue(event?.currentTarget?.files?.[0])
+            }}
+          />
         </label>
 
         <ErrorMessage name={name}>
@@ -58,4 +60,4 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
   }
 )
 
-export default LabeledTextField
+export default ImgField

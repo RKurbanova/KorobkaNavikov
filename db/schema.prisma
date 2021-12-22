@@ -17,10 +17,13 @@ model User {
   id             String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-  name           String?
   email          String   @unique
   hashedPassword String?
   role           String   @default("USER")
+  lastname       String?
+  name           String?
+  photo          String?
+  courcesIds     String[] @db.ObjectId
 
   tokens   Token[]
   sessions Session[]
@@ -58,11 +61,26 @@ model Token {
   @@unique([hashedToken, type])
 }
 
+model Lesson {
+  id       String  @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  name     String
+  text     String
+  Cource   Cource? @relation(fields: [courceId], references: [id])
+  courceId String? @db.ObjectId
+}
+
 model Cource {
-  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String
+  id          String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  image       String
+  description String
+  about       String
+  targets     String
+  lesson      String
+  program     String
+  lessons     Lesson[]
 }
 
 // NOTE: It's highly recommended to use an enum for the token type

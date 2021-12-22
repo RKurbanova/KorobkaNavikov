@@ -4,6 +4,7 @@ import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { ResetPassword } from "app/auth/validations"
 import resetPassword from "app/auth/mutations/resetPassword"
+import { Suspense } from "react"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
@@ -54,6 +55,10 @@ const ResetPasswordPage: BlitzPage = () => {
 }
 
 ResetPasswordPage.redirectAuthenticatedTo = "/"
-ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password">{page}</Layout>
+ResetPasswordPage.getLayout = (page) => (
+  <Suspense fallback="Loading...">
+    <Layout title="Reset Your Password">{page}</Layout>
+  </Suspense>
+)
 
 export default ResetPasswordPage
