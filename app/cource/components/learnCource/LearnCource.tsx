@@ -34,6 +34,7 @@ export function LearnCource() {
           })}
         </div>
         <div className={styles.learnCource__lesson}>
+          <h3>{cource?.lesson[currentLessonIndex]?.topic}</h3>
           {cource?.lessons[currentLessonIndex]?.text}
         </div>
       </div>
